@@ -35,6 +35,4 @@ setup(
     url = "http://code.google.com/p/poly2tri/",
 
     ext_modules = extensions,
-    setup_requires = ["cython"],
-    install_requires = ["cython"],
 )

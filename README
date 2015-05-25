@@ -1,4 +1,8 @@
-﻿==================
+﻿This is the existing poly2tri.python library, updated such that 
+it seems to build with python3.4. Any other correctness, or compatiblity
+has not been evaluated.
+
+==================
 INSTALLATION GUIDE
 ==================
 
