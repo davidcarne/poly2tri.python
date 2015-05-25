@@ -87,7 +87,7 @@ def main(file_name, translate, zoom):
     ##
     triangles = cdt.triangulate()
     
-    print "Elapsed time (ms) = " + str(clock()*1000.0)
+    print ("Elapsed time (ms) = " + str(clock()*1000.0))
         
     # The Main Event Loop
     done = False
@@ -156,7 +156,7 @@ if __name__=="__main__":
       main(file_name, [tx, ty], zoom)
       exit()
     
-    print
+    print()
     print("  Usage: filename translate-x translate-y zoom")
     print("Example: python test.py data/dude.dat 100 -200 1")
     print("         python test.py data/nazca_monkey.dat 400 300 4.5")  
