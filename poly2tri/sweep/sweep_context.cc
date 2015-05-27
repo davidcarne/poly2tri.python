@@ -32,9 +32,12 @@
 #include <algorithm>
 #include "advancing_front.h"
 
+#define nullptr 0L
+
 namespace p2t {
 
-SweepContext::SweepContext(std::vector<Point*> polyline)
+SweepContext::SweepContext(std::vector<Point*> polyline) : 
+	front_(nullptr), head_(nullptr), tail_(nullptr), af_head_(nullptr), af_tail_(nullptr), af_middle_(nullptr)
 {
   basin = Basin();
   edge_event = EdgeEvent();
