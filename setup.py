@@ -1,5 +1,5 @@
 import os
-from distutils.core import setup
+from setuptools import setup
 from distutils.extension import Extension
 import Cython
 import Cython.Build
