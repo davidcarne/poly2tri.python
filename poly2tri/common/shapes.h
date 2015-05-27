@@ -37,6 +37,7 @@
 #include <cstddef>
 #include <assert.h>
 #include <cmath>
+#include <exception>
 
 namespace p2t {
 
@@ -120,6 +121,11 @@ struct Point {
 
 };
 
+class RepeatedPointException : public std::exception {
+	virtual const char * what() const throw() {
+		return "Repeated Point";
+	}
+};
 // Represents a simple polygon's edge
 struct Edge {
 
@@ -137,6 +143,7 @@ struct Edge {
         p = &p2;
       } else if (p1.x == p2.x) {
         // Repeat points
+	throw new RepeatedPointException();
         assert(false);
       }
     }

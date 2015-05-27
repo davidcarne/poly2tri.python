@@ -32,6 +32,25 @@
 #include "sweep_context.h"
 #include "advancing_front.h"
 #include "../common/utils.h"
+#include <cstdio>
+#include <exception>
+
+
+class PointValidityException: public std::exception
+{
+
+	public:
+	PointValidityException(const char * msg) : m_exc_str(msg) {}
+
+	virtual const char * what() const throw()
+	{
+		return m_exc_str;
+	}
+
+	private:
+	const char * m_exc_str;
+};
+
 
 namespace p2t {
 
@@ -121,14 +140,16 @@ void Sweep::EdgeEvent(SweepContext& tcx, Point& ep, Point& eq, Triangle* triangl
   Point* p1 = triangle->PointCCW(point);
   Orientation o1 = Orient2d(eq, *p1, ep);
   if (o1 == COLLINEAR) {
-    //throw new RuntimeException( "EdgeEvent - Collinear not supported" );
+    printf("A %f %f   %f %f    %f %f \n", eq.x, eq.y, p1->x, p1->y, ep.x, ep.y);
+    throw new PointValidityException( "EdgeEvent - Collinear not supported" );
     assert(false);
   }
 
   Point* p2 = triangle->PointCW(point);
   Orientation o2 = Orient2d(eq, *p2, ep);
   if (o2 == COLLINEAR) {
-    //throw new RuntimeException( "EdgeEvent - Collinear not supported" );
+    printf("B %f %f   %f %f    %f %f \n", eq.x, eq.y, p1->x, p1->y, ep.x, ep.y);
+    throw new PointValidityException( "EdgeEvent - Collinear not supported" );
     assert(false);
   }
 
@@ -712,7 +733,7 @@ void Sweep::FlipEdgeEvent(SweepContext& tcx, Point& ep, Point& eq, Triangle* t, 
   if (&ot == NULL) {
     // If we want to integrate the fillEdgeEvent do it here
     // With current implementation we should never get here
-    //throw new RuntimeException( "[BUG:FIXME] FLIP failed due to missing triangle");
+    throw new PointValidityException( "[BUG:FIXME] FLIP failed due to missing triangle");
     assert(0);
   }
 
@@ -773,7 +794,7 @@ Point& Sweep::NextFlipPoint(Point& ep, Point& eq, Triangle& ot, Point& op)
     // Left
     return *ot.PointCW(op);
   } else{
-    //throw new RuntimeException("[Unsupported] Opposing point on constrained edge");
+    throw new PointValidityException("[Unsupported] Opposing point on constrained edge");
     assert(0);
   }
 }
@@ -787,7 +808,7 @@ void Sweep::FlipScanEdgeEvent(SweepContext& tcx, Point& ep, Point& eq, Triangle&
   if (&t.NeighborAcross(p) == NULL) {
     // If we want to integrate the fillEdgeEvent do it here
     // With current implementation we should never get here
-    //throw new RuntimeException( "[BUG:FIXME] FLIP failed due to missing triangle");
+    throw new PointValidityException( "[BUG:FIXME] FLIP failed due to missing triangle");
     assert(0);
   }
 
