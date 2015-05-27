@@ -3,7 +3,7 @@ cdef class CDT:
     cdef c_CDT *me
     cdef point_vec polyline
     
-    def __init__(self, list polyline):
+    def __init__(self, polyline):
         self.polyline = pointvec_factory(0)
         for point in polyline:
             self.polyline.push_back(new_Point(point.x, point.y))
