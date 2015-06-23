@@ -28,7 +28,7 @@ extensions = Cython.Build.cythonize(ext)
 
 setup(
     name = "poly2tri",
-    version = "0.3.3",
+    version = "0.3.3+dcpatch",
     author = "Mason Green",
     description = "A 2D constrained Delaunay triangulation library",
     long_description = read('README'),
