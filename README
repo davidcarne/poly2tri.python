@@ -23,6 +23,14 @@ Dependencies
 Building the library
 ----------------------------------------------
 
+On Windows, follow the instructions here to set up your environment:
+http://rexdouglass.com/python-64-bit-on-windows-part-2-building-packages/
+
+Then to create a wheel package, run the following command:
+python setup.py bdist_wheel
+This will create a .whl package in dist/ directory which can then be redistributed.
+
+On Linux, you can do:
 python setup.py build_ext -i
 
 ----------------------------------------------
